@@ -14,26 +14,33 @@
         <nav>
             <ul class="nav justify-content-center mt-3">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('pageAcceuil') }}">Accueil</a>
+                    <a class="nav-link text-white" href="{{ route('pageAccueil') }}">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('pageLogin') }}">Rechercher un Film</a>
+                    <a class="nav-link text-white" href="{{ route('pageRecherche') }}">Rechercher un Film</a>
+                </li>
+                @auth
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('pageFavoris') }}">Mes Favoris</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('pageLogin') }}">Mes Favoris</a>
+                    <a class="nav-link text-white" href="{{ route('pageAmis') }}">Mes Amis</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('pageLogin') }}">Mes Amis</a>
+                    <a class="nav-link text-white" href="{{ route('pagePartage') }}">Mes Partages</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('pageLogin') }}">Mes Partages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('pageLogin') }}">Mon Profil</a>
+                    <a class="nav-link text-white" href="{{ route('pageProfil', ['id' => auth()->user()->id]) }}">Mon Profil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('logout') }}">Déconnexion</a>
                 </li>
+                @endauth
+                @guest
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('login') }}">Se connecter</a>
+                </li>
+                @endguest
             </ul>
         </nav>
     </header>

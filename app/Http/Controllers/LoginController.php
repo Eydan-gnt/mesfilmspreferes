@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
 
-    public function afficherAcceuil() {
+    public function afficherAccueil() {
         return view('app.accueil');
     }
 
@@ -69,6 +69,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('pageLogin')->with('success', 'Vous avez été déconnecté avec succès.');
+        return redirect()->route('login')->with('success', 'Vous avez été déconnecté avec succès.');
     }
 }

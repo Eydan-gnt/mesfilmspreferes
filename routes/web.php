@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(LoginController::class)->group(function() {
-    Route::get('/', 'afficherAcceuil')->middleware('auth')->name('pageAcceuil');
+    Route::get('/', 'afficherAccueil')->middleware('auth')->name('pageAccueil');
 
-    Route::get('/login', 'afficherLogin')->name('pageLogin');
+    Route::get('/login', 'afficherLogin')->name('login');
     Route::post('/login/connexion', 'userLogin')->name('verifLogin');
 
     Route::get('/register', 'afficherRegister')->name('pageRegister');
@@ -24,7 +24,7 @@ Route::controller(LoginController::class)->group(function() {
 Route::controller(RechercheController::class)->middleware('auth')->group(function() {
     Route::get('/recherche', 'afficherRecherche')->name('pageRecherche');
 
-    Route::post('/recherche/{recherche}', 'recherche')->name('recherche');
+    Route::get('/recherche/result', 'recherche')->name('recherche');
     Route::post('/recherche/{recherche}/ajouterFavori', 'ajouterFavori')->name('ajouterFavori');
 });
 
