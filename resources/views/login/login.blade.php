@@ -18,7 +18,7 @@
                 <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
             </form>
             <div class="text-center mt-3">
-                <small>Pas de compte ? <a href="{{ route('userRegister') }}">Inscrivez-vous ici</a></small>
+                <small>Pas de compte ? <a href="{{ route('pageRegister') }}">Inscrivez-vous ici</a></small>
             </div>
         </div>
     </div>

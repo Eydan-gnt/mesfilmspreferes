@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Favori;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RechercheController extends Controller
 {
@@ -35,5 +38,45 @@ class RechercheController extends Controller
         }
         
         return view('app.recherche', compact('results', 'error'));
+    }
+
+    public function ajouterFavori($filmId)
+    {
+        try {
+            // Vérifier si le film n'est pas déjà dans les favoris
+            $existeDeja = Favori::where('user_id', Auth::id())
+                                ->where('favori_id', $filmId)
+                                ->exists();
+            
+            if ($existeDeja) {
+                return redirect()->back()->with('info', 'Ce film est déjà dans vos favoris !');
+            }
+
+            // Récupérer les détails du film depuis l'API TMDB
+            $apiKey = '63905b28b94957ba2d061a85b849243f';
+            $url = "https://api.themoviedb.org/3/movie/{$filmId}?api_key={$apiKey}&language=fr-FR";
+            $response = file_get_contents($url);
+            
+            if ($response === false) {
+                throw new Exception('Erreur lors de la récupération des détails du film');
+            }
+            
+            $film = json_decode($response, true);
+            
+            // Créer le favori
+            Favori::create([
+                'favori_id' => $filmId,
+                'film_title' => $film['title'] ?? 'Titre inconnu',
+                'film_year' => isset($film['release_date']) ? substr($film['release_date'], 0, 4) : null,
+                'film_overview' => $film['overview'] ?? null,
+                'film_poster_path' => $film['poster_path'] ?? null,
+                'user_id' => Auth::id()
+            ]);
+            
+            return redirect()->back()->with('success', 'Film ajouté à vos favoris avec succès !');
+            
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Erreur lors de l\'ajout du favori : ' . $e->getMessage());
+        }
     }
 }
