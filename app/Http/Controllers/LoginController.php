@@ -18,6 +18,10 @@ class LoginController extends Controller
     }
 
     public function afficherRegister() {
+        if (Auth::check()) {
+            return redirect()->route('pageAccueil');
+        }
+
         return view('login.register');
     }
 

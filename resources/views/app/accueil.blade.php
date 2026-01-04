@@ -4,7 +4,7 @@
 <div class="container my-5">
     <!-- Section d'accueil hero -->
     <div class="jumbotron bg-primary text-white text-center py-5 rounded">
-        <h1 class="display-3 font-weight-bold">Bienvenue {{ auth()->user()->lastname }} !</h1>
+        <h1 class="display-3 font-weight-bold">Bienvenue {{ auth()->user()->username }} !</h1>
         <p class="lead mt-3">Découvrez, partagez et gérez vos films préférés en toute simplicité</p>
         <hr class="my-4 bg-white">
         <p>Explorez notre collection, ajoutez vos favoris et partagez-les avec vos amis</p>
