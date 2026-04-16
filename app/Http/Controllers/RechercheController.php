@@ -20,7 +20,7 @@ class RechercheController extends Controller
         $apiKey = '63905b28b94957ba2d061a85b849243f';//clé obligatoire pour TMDB
         $query = urlencode(request('query'));
         //On forme l'URL de la requête à l'API
-        $url = "https://api.themoviedb.org/3/search/movie?query={$query}&api_key={$apiKey}";
+        $url = "https://api.themoviedb.org/3/search/movie?query={$query}&api_key={$apiKey}&language=fr-FR";
         $response = file_get_contents($url);//on récupère les données
         if($response === false) throw new Exception('Erreur lors de la requête API');
         //on met les données dans un tableau associatif qu'on peut exploiter

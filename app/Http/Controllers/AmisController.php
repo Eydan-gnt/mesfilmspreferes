@@ -73,7 +73,7 @@ class AmisController extends Controller
             return redirect()->route('pageAmis')->with('error', 'Vous ne pouvez pas vous ajouter vous-même');
         }
 
-        // Vérifier que l'ami n'existe pas déjà
+        // Vérifier que l'ami n'existe pas
         $dejaAmi = FriendUser::where('user_id', Auth::id())
                              ->where('friend_id', $userId)
                              ->exists();

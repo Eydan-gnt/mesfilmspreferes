@@ -35,7 +35,6 @@ class PartageController extends Controller
             return redirect()->back()->with('error', 'Vous ne pouvez partager que vos propres favoris');
         }
         
-        // Valider la requête
         $request->validate([
             'friend_id' => 'required|exists:users,id',
             'message' => 'nullable|string|max:500'

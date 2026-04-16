@@ -76,7 +76,7 @@
                                 @endif
                                 <div>
                                     <h6 class="mb-0">{{ $resultat->firstname }} {{ $resultat->lastname }}</h6>
-                                    <small class="text-muted">@{{ $resultat->username }}</small>
+                                    <small class="text-muted">{{ $resultat->username }}</small>
                                 </div>
                             </div>
                             @if(in_array($resultat->id, $mesAmisIds ?? []))
